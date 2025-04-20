@@ -1,7 +1,7 @@
 """
 Session manager for orchestrating agent play, switching, and replay.
 """
-from typing import Optional, Dict, Any
+from typing import Dict, Any
 from .agent_base import Agent
 
 class SessionManager:
