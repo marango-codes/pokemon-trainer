@@ -44,9 +44,9 @@ A unified Python framework that lets RL agents, LLM agents, or humans play Poké
 - Spectator: CLI and Arcade-based clients (see `/api/` and `/core/`)
 
 ## Core Module Structure
-- `core/emulator.py`: PyBoy-based emulator wrapper for Pokémon Red
+- `core/emulator.py`: PyBoy-based emulator wrapper for Pokémon Red, with modern logging (rich), SDL2/OpenGL backend support, debug options, and headless/interactive branching. The main API is `perform_emulator_action`, which takes a list of button presses and advances the emulator by a configurable number of frames (`wait_frames`).
 - `core/actions.py`: Action types, mapping, and discrete action list for Gym environments
-- `core/env_pokemon_red.py`: Gymnasium-compatible environment for Pokémon Red
+- `core/env_pokemon_red.py`: Gymnasium-compatible environment for Pokémon Red. The environment maps `ActionType.KEY_PRESS` and `ActionType.WAIT` to the emulator interface, and allows customizing timing through the `wait_frames` parameter.
 
 ## Legal
 You must supply your own Pokémon Red ROM. This project does not distribute copyrighted ROMs.
