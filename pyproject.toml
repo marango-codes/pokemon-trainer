@@ -1,0 +1,24 @@
+[project]
+name = "pokemon-trainer"
+version = "0.1.0"
+description = "Unified Python framework for RL, LLM, and human agents to play Pokémon Red with spectators."
+readme = "README.md"
+requires-python = ">=3.11"
+dependencies = [
+    "arcade>=3.1.0",
+    "fastapi>=0.115.12",
+    "gymnasium>=1.1.1",
+    "pyboy>=2.5.2",
+    "pydantic>=2.11.3",
+    "pytest>=8.3.5",
+    "stable-baselines3>=2.6.0",
+    "uvicorn[standard]>=0.34.2",
+]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = "-ra"
+
+[tool.ruff]
+line-length = 100
+exclude = [".git", "__pycache__", ".venv", "env", "build", "dist"]
