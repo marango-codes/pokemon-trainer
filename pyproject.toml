@@ -11,6 +11,7 @@ dependencies = [
     "pyboy>=2.5.2",
     "pydantic>=2.11.3",
     "pytest>=8.3.5",
+    "ruff>=0.11.6",
     "stable-baselines3>=2.6.0",
     "uvicorn[standard]>=0.34.2",
 ]
@@ -22,3 +23,13 @@ addopts = "-ra"
 [tool.ruff]
 line-length = 100
 exclude = [".git", "__pycache__", ".venv", "env", "build", "dist"]
+
+[tool.ruff.format]
+# Like Black, use double quotes for strings.
+quote-style = "double"
+
+# Like Black, respect magic trailing commas.
+skip-magic-trailing-comma = false
+
+# Like Black, automatically detect the appropriate line ending.
+line-ending = "auto"
