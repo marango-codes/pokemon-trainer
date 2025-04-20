@@ -12,7 +12,7 @@ A unified Python framework that lets RL agents, LLM agents, or humans play Poké
 ```
 /pokemon-trainer/
   /agents/         # RL, LLM, and human agent wrappers
-  /core/           # Game interface (PyBoy), session manager, pydantic models
+  /core/           # Game interface (emulator), actions, environment, session manager, pydantic models
   /api/            # FastAPI endpoints for agent and spectator control
   /replay/         # Replay storage, playback, and utilities
   /tests/          # Pytest suites mirroring above structure
@@ -27,7 +27,11 @@ A unified Python framework that lets RL agents, LLM agents, or humans play Poké
    ```sh
    uv pip install
    ```
-2. **Place your Pokémon Red ROM** as `pokemon_red.gb` in the project root.
+2. **Place your Pokémon Red ROM** as `roms/pokemon_red.gb` (create the `/roms/` directory if it does not exist).
+   - The project will automatically validate the ROM using its SHA-256 checksum.
+   - If the ROM is invalid, you will be notified and the emulator will not start.
+   - **How to obtain the ROM legally:** You must dump the ROM from a cartridge you own, using legal tools/hardware. This project does not distribute, endorse, or condone piracy of copyrighted ROMs.
+   - For more information on legal ROM dumping, see [Dumping Game Boy cartridges](https://retrostuff.org/2019/09/22/dumping-game-boy-cartridges/).
 3. **Run tests:**
    ```sh
    pytest
@@ -39,8 +43,11 @@ A unified Python framework that lets RL agents, LLM agents, or humans play Poké
 - Human: see `agents/human_agent.py`
 - Spectator: CLI and Arcade-based clients (see `/api/` and `/core/`)
 
+## Core Module Structure
+- `core/emulator.py`: PyBoy-based emulator wrapper for Pokémon Red
+- `core/actions.py`: Action types, mapping, and discrete action list for Gym environments
+- `core/env_pokemon_red.py`: Gymnasium-compatible environment for Pokémon Red
+
 ## Legal
 You must supply your own Pokémon Red ROM. This project does not distribute copyrighted ROMs.
 
----
-See `PLANNING.md` for architecture and milestones.
