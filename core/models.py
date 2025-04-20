@@ -2,7 +2,7 @@
 Pydantic models for actions, observations, and session metadata.
 """
 from pydantic import BaseModel
-from typing import Any, List, Optional
+from typing import Optional
 
 class Action(BaseModel):
     button: str
