@@ -19,6 +19,9 @@ dependencies = [
 [tool.pytest.ini_options]
 testpaths = ["tests"]
 addopts = "-ra"
+filterwarnings = [
+    "ignore:Using SDL2 binaries from pysdl2-dll.*:UserWarning",
+]
 
 [tool.ruff]
 line-length = 100
