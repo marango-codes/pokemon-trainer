@@ -25,7 +25,7 @@ def test_env_step_and_render():
     """
     Test that the environment step returns the correct tuple and rendering works.
     """
-    env = PokemonRedEnv()
+    env = PokemonRedEnv(render_mode="rgb_array")
     obs, info = env.reset()
     for i in range(env.action_space.n):
         result = env.step(i, wait_frames=4)
@@ -37,7 +37,9 @@ def test_env_step_and_render():
         assert isinstance(terminated, bool)
         assert isinstance(truncated, bool)
         assert isinstance(info2, dict)
-    env.render(mode="rgb_array")
+    img = env.render()
+    assert isinstance(img, np.ndarray), "render(mode='rgb_array') should return an ndarray"
+    assert img.shape == env.observation_space.shape, "Rendered image shape should match observation space"
     env.close()
 
 @pytest.mark.skipif(not ROM_PATH.exists(), reason="pokemon_red.gb ROM not present")

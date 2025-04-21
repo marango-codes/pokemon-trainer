@@ -47,7 +47,32 @@ A unified Python framework that lets RL agents, LLM agents, or humans play Poké
 - `core/emulator.py`: PyBoy-based emulator wrapper for Pokémon Red, with modern logging (rich), SDL2/OpenGL backend support, debug options, and headless/interactive branching. The main API is `perform_emulator_action`, which takes a list of button presses and advances the emulator by a configurable number of frames (`wait_frames`).
 - `core/actions.py`: Action types, mapping, and discrete action list for Gym environments
 - `core/env_pokemon_red.py`: Gymnasium-compatible environment for Pokémon Red. The environment maps `ActionType.KEY_PRESS` and `ActionType.WAIT` to the emulator interface, and allows customizing timing through the `wait_frames` parameter.
+- The `info` dictionary returned by `step()` and `reset()` contains extracted game state, including: player coordinates (x, y), current map ID, party count, player money, player name, rival name, badges (as a bitmask), pokedex_seen, time_played, party_species, and party_data.
+  *   `player_x`: Player's x-coordinate (`int`)
+  *   `player_y`: Player's y-coordinate (`int`)
+  *   `map_id`: Current map ID (`int`)
+  *   `party_count`: Number of Pokémon in the party (`int`)
+  *   `player_money`: Player's money (`int`)
+  *   `player_name`: Player's name (`str`)
+  *   `rival_name`: Rival's name (`str`)
+  *   `badges`: Bitmask of obtained badges (`int`)
+  *   `pokedex_seen`: Number of Pokémon seen in the Pokédex (`int`)
+  *   `time_played`: Tuple of (hours, minutes, seconds, frames) (`tuple[int, int, int, int]`)
+  *   `party_species`: List of species IDs for Pokémon in the party (`list[int]`)
+  *   `party_data`: Detailed data for each Pokémon in the party (`list[dict]`). Each dict contains:
+    *   `species_id`: Species ID (`int`)
+    *   `current_hp`: Current Hit Points (`int`)
+    *   `status`: Status condition ID (`int`)
+    *   `type1`: Type 1 ID (`int`)
+    *   `type2`: Type 2 ID (`int`)
+    *   `level`: Actual level (`int`)
+    *   `moves`: List of move IDs (`list[int]`)
+    *   `pp`: List of current PP for each move (`list[int]`)
+    *   `trainer_id`: Original Trainer ID (`int`)
+    *   `exp`: Experience points (`int`)
+    *   `evs`: Dictionary of Effort Values (HP, Attack, Defense, Speed, Special) (`dict[str, int]`)
+    *   `ivs`: Dictionary of Individual Values (HP, Attack, Defense, Speed, Special) (`dict[str, int]`)
+    *   `stats`: Dictionary of current stats (Max HP, Attack, Defense, Speed, Special) (`dict[str, int]`)
 
 ## Legal
 You must supply your own Pokémon Red ROM. This project does not distribute copyrighted ROMs.
-
